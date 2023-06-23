@@ -69,8 +69,40 @@ let coming_kind = [
     [0,2,0,2,0,2],
     [0]
 ]
+let coming_for = [
+    [2],
+    [-1],
+    [-1],
+    [-1],
+    [-1],
+    [0,3,0,3,0,1,0,10,3,0,0,3],
+    [0,10,0,3,10,3,0,10,3,0,10,3,10,0,0,10,4],
+    [0,0,10,4,0,0,10,4,0,0,10,4,0,3,0,10,0,0,3,3,11,0,0,3,11,3],
+    [0,0,1,0,1,0,3,11,0,0,3,10,4,0,0,8,3,9,0,11,0],
+    [0,2,11,0,0,10,3,0,0,3,0,1,3,0,1,3],
+    [0,10,3,0,1,2,11,0,3,1,0,10,3,0,1,0],
+    [11,3,0,1,0,10,3,0,1,0,11,3,0,1,0],
+    [10,3,0,1,0,11,3,0,1,0,10,3,0,1,0],
+    [11,3,0,1,0,10,3,0,1,0,11,3,0,1,0],
+    [11,3,0,1,0,10,3,2,1,0,10,3,0,1,2],
+    [10,0,3,0,1,0,1,3,0,0,3,0,10,3,0,0,3,0],
+    [10,0,10,3,0,9,3,2,10,3,0,11,3,0,0,10,3],
+    [0,10,3,0,0,10,3,0,10,3,0,0,10,3,0,11,3,0,0,10,3],
+    [0,3,0,0,1,3,3,0,0,3,0,10,2,3,0,0,3,6,0],
+    [3,0,2,3,10,0,3,0,0,6,3,0,0,3,0,10],
+    [3,0,0,3,0,1,3,0,0,3,0,7,3,0,0,3,0,5],
+    [3,0,0,3,2,10,0,1,0,0,0,0,3,10]
+    [0,1,4,0,0,2,1,0,1,2],
+    [0,1,2,11,4,2],
+    [2]
+]
+///0:品川 1:泉岳寺 2:神奈川新町 3:羽田空港 4:京急川崎
+///5:成田空港 6:印旛日本医大 7:印西牧の原 8:京成佐倉
+///9:押上 10:青砥 11:京成高砂
 let kinds=["<div class='local'>普通</div>","<div class='ex'>急行</div>","<div class='lex'>特急</div>","<div class='rle'>快特</div>"]
 let kinds_ryo=["6両","8両","8両","8両"]
+let kinds_for=["品川","泉岳寺","神奈川新町","羽田空港","京急川崎","成田空港","印旛日本医大","印西牧の原","京成佐倉","押上","青砥","京成高砂"]
+let kinds_fore=["Shinagawa","Sengakuji","Kanagawa-shinmachi","Haneda Airport","Keikyu-kawasaki","Narita Airport","Imba-nihonidai","Inzai-makinohara","Keisei-sakura","Oshiage","Aoto","Keisei-takasago"]
 let execIntervalFunc = function() {
     let jtime = new Date();
     let hour = jtime.getHours();
@@ -102,18 +134,24 @@ let execIntervalFunc = function() {
                 document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l]);
                 document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l]]
                 document.getElementById("r1").innerHTML=kinds_ryo[coming_kind[hours][l]]
+                document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
+                document.getElementById("fe1").innerHTML=kinds_fore[coming_for[hours][l]]
                 if(coming_second[hours][l]<10){
                     document.getElementById("t1").innerHTML=(hours)+":0"+(coming_second[hours][l]);
                 }
                 document.getElementById("t2").innerHTML=(hours)+":"+(coming_second[hours+1][0]);
                 document.getElementById("k2").innerHTML=kinds[coming_kind[hours+1][0]]
                 document.getElementById("r2").innerHTML=kinds_ryo[coming_kind[hours+1][0]]
+                document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours+1][0]]
+                document.getElementById("fe2").innerHTML=kinds_fore[coming_for[hours+1][0]]
                 if(coming_second[hours+1][0]<10){
                     document.getElementById("t2").innerHTML=(hours)+":0"+(coming_second[hours+1][0]);
                 }
                 document.getElementById("t3").innerHTML=(hours)+":"+(coming_second[hours+1][1]);
                 document.getElementById("k3").innerHTML=kinds[coming_kind[hours+1][1]]
                 document.getElementById("r3").innerHTML=kinds_ryo[coming_kind[hours+1][1]]
+                document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][1]]
+                document.getElementById("fe3").innerHTML=kinds_fore[coming_for[hours+1][1]]
                 if(coming_second[hours+1][1]<10){
                     document.getElementById("t3").innerHTML=(hours)+":0"+(coming_second[hours+1][1]);
                 }
@@ -121,18 +159,24 @@ let execIntervalFunc = function() {
                 document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l]);
                 document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l]]
                 document.getElementById("r1").innerHTML=kinds_ryo[coming_kind[hours][l]]
+                document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
+                document.getElementById("fe1").innerHTML=kinds_fore[coming_for[hours][l]]
                 if(coming_second[hours][l]<10){
                     document.getElementById("t1").innerHTML=(hours)+":0"+(coming_second[hours][l]);
                 }
                 document.getElementById("t2").innerHTML=(hours)+":"+(coming_second[hours][l+1]);
                 document.getElementById("k2").innerHTML=kinds[coming_kind[hours][l+1]]
                 document.getElementById("r2").innerHTML=kinds_ryo[coming_kind[hours][l+1]]
+                document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours][l+1]]
+                document.getElementById("fe2").innerHTML=kinds_fore[coming_for[hours][l+1]]
                 if(coming_second[hours][l+1]<10){
                     document.getElementById("t2").innerHTML=(hours)+":0"+(coming_second[hours][l+1]);
                 }
                 document.getElementById("t3").innerHTML=(hours)+":"+(coming_second[hours+1][0]);
                 document.getElementById("k3").innerHTML=kinds[coming_kind[hours+1][0]]
                 document.getElementById("r3").innerHTML=kinds_ryo[coming_kind[hours+1][0]]
+                document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][0]]
+                document.getElementById("fe3").innerHTML=kinds_fore[coming_for[hours+1][0]]
                 if(coming_second[hours+1][0]<10){
                     document.getElementById("t3").innerHTML=(hours)+":0"+(coming_second[hours+1][0]);
                 }
@@ -140,18 +184,24 @@ let execIntervalFunc = function() {
                 document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l]);
                 document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l]]
                 document.getElementById("r1").innerHTML=kinds_ryo[coming_kind[hours][l]]
+                document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
+                document.getElementById("fe1").innerHTML=kinds_fore[coming_for[hours][l]]
                 if(coming_second[hours][l]<10){
                     document.getElementById("t1").innerHTML=(hours)+":0"+(coming_second[hours][l]);
                 }
                 document.getElementById("t2").innerHTML=(hours)+":"+(coming_second[hours][l+1]);
                 document.getElementById("k2").innerHTML=kinds[coming_kind[hours][l+1]]
                 document.getElementById("r2").innerHTML=kinds_ryo[coming_kind[hours][l+1]]
+                document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours][l+1]]
+                document.getElementById("fe2").innerHTML=kinds_fore[coming_for[hours][l+1]]
                 if(coming_second[hours][l+1]<10){
                     document.getElementById("t2").innerHTML=(hours)+":0"+(coming_second[hours][l+1]);
                 }
                 document.getElementById("t3").innerHTML=(hours)+":"+(coming_second[hours][l+2]);
                 document.getElementById("k3").innerHTML=kinds[coming_kind[hours][l+2]]
                 document.getElementById("r3").innerHTML=kinds_ryo[coming_kind[hours][l+2]]
+                document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours][l+2]]
+                document.getElementById("fe3").innerHTML=kinds_fore[coming_for[hours][l+2]]
                 if(coming_second[hours][l+2]<10){
                     document.getElementById("t3").innerHTML=(hours)+":0"+(coming_second[hours][l+2]);
                 }
