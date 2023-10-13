@@ -33,13 +33,13 @@ table{
     width:12%;
 }
 .c{
-    width:32%;
+    width:30%;
 }
 .d{
     width:18%;
 }
 .e{
-    width:8%;
+    width:10%;
 }
 .f{
     width:24%;
@@ -49,25 +49,29 @@ table{
     color:yellow;
 }
 .for_j{
-    font-size:3vw;
+    font-size:5vw;
 }
 td.for_j{
     border:none;
 }
 .for_e{
-    font-size:2vw;
+    font-size:1.8vw;
 }
 .local{
     background-color:#222222;
+    padding:1.5vw 0;
 }
 .ex{
     background-color:#0099ff;
+    padding:1.5vw 0;
 }
 .lex{
     background-color:#ff1111;
+    padding:1.5vw 0;
 }
 .rle{
     background-color:#00dd22;
+    padding:1.5vw 0;
 }
 .ads{
     color:orange;
