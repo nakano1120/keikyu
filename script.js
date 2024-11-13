@@ -101,8 +101,8 @@ let coming_for = [
 ///5:成田空港 6:印旛日本医大 7:印西牧の原 8:京成佐倉
 ///9:押上 10:青砥 11:京成高砂
 let kinds=["<div class='local'>普通</div>","<div class='ex'>急行</div>","<div class='lex'>特急</div>","<div class='rle'>快特</div>"]
-let kinds_e=["<div style='font-size:4vw;' class='local'>Local</div>","<div style='font-size:4vw;' class='ex'>Exp.</div>","<div style='font-size:3vw;' class='lex'>Ltd Exp.</div>","<div style='font-size:3vw;' class='rle'>Ltd Exp.</div>"]
-let kinds_ryo=["6両","8両","8両","8両"]
+let kinds_e=["<div class='eng local'>Local</div>","<div class='eng ex'>Expless</div>","<div class='eng lex'>Ltd Exp.</div>","<div class='eng rle'>Ltd Exp.</div>"]
+let kinds_s=["停車駅：弘明寺、井土ヶ谷、南太田、黄金町、日ノ出町、戸部、横浜、神奈川","停車駅：弘明寺、井土ヶ谷、日ノ出町、横浜、京急東神奈川、神奈川新町","停車駅：横浜、神奈川新町","停車駅：横浜、京急川崎、京急蒲田"]
 let kinds_for=["品　川","泉 岳 寺","神奈川新町","羽田空港","京急川崎","成田空港","印旛日本医大","印西牧の原","京成佐倉","押　上","青　砥","京成高砂"]
 let kinds_fore=["Shinagawa","Sengakuji","<p style='font-size:3vw;'>Kanagawa-shinmachi</p>","<p style='font-size:3vw;'>Haneda Airport</p>","<p style='font-size:3vw;'>Keikyu-kawasaki</p>","<p style='font-size:3vw;'>Narita Airport</p>","<p style='font-size:3vw;'>Imba-nihonidai</p>","<p style='font-size:3vw;'>Inzai-makinohara</p>","Keisei-sakura","Oshiage","Aoto","<p style='font-size:3vw;'>Keisei-takasago</p>"]
 let execIntervalFunc = function() {
@@ -134,46 +134,130 @@ let execIntervalFunc = function() {
             console.log(l)
             console.log(coming_second[hours].length)
             if(l == coming_second[hours].length){
-                console.log("B")
-                document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l-1]);
-                document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l-1]]
-                document.getElementById("r1").innerHTML=kinds_ryo[coming_kind[hours][l-1]]
-                if(Math.round(second/10)%2==0){
-                    document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l-1]]
+                console.log("B"+coming_second[hours][l-1])
+                if(coming_second[hours][l-1] <= minute){
+                    console.log("BD")
+                    document.getElementById("t1").innerHTML=(hours+1)+":"+(coming_second[hours+1][0]);
+                    document.getElementById("k1").innerHTML=kinds[coming_kind[hours+1][0]]
+                    console.log("aaa"+Math.round(minutes/10))
+                    if(Math.round(second/10)%2==0){
+                        document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours+1][0]]
+                    }else{
+                        document.getElementById("k1").innerHTML=kinds_e[coming_kind[hours+1][0]]
+                        document.getElementById("fj1").innerHTML=kinds_fore[coming_for[hours+1][0]]
+                    }
+                    ///document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
+                    ///document.getElementById("fe1").innerHTML=kinds_fore[coming_for[hours][l]]
+                    if(coming_second[hours+1][0]<10){
+                        document.getElementById("t1").innerHTML=(hours+1)+":0"+(coming_second[hours+1][0]);
+                    }
+                    document.getElementById("t2").innerHTML=(hours+1)+":"+(coming_second[hours+1][1]);
+                    document.getElementById("k2").innerHTML=kinds[coming_kind[hours+1][1]]
+                    if(Math.round(second/10)%2==0){
+                        document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours+1][1]]
+                    }else{
+                        document.getElementById("k2").innerHTML=kinds_e[coming_kind[hours+1][1]]
+                        document.getElementById("fj2").innerHTML=kinds_fore[coming_for[hours+1][1]]
+                    }
+                    //document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours][l+1]]
+                    //document.getElementById("fe2").innerHTML=kinds_fore[coming_for[hours][l+1]]
+                    if(coming_second[hours+1][1]<10){
+                        document.getElementById("t2").innerHTML=(hours+1)+":0"+(coming_second[hours+1][1]);
+                    }
+                    document.getElementById("t3").innerHTML=(hours+1)+":"+(coming_second[hours+1][2]);
+                    document.getElementById("k3").innerHTML=kinds[coming_kind[hours+1][2]]
+                    if(Math.round(second/10)%2==0){
+                        document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][2]]
+                    }else{
+                        document.getElementById("k3").innerHTML=kinds_e[coming_kind[hours+1][2]]
+                        document.getElementById("fj3").innerHTML=kinds_fore[coming_for[hours+1][2]]
+                    }
+                    ///document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours][l+2]]
+                    ///document.getElementById("fe3").innerHTML=kinds_fore[coming_for[hours][l+2]]
+                    if(coming_second[hours+1][2]<10){
+                        document.getElementById("t3").innerHTML=(hours+1)+":0"+(coming_second[hours+1][2]);
+                    }
                 }else{
-                    document.getElementById("k1").innerHTML=kinds_e[coming_kind[hours][l-1]]
-                    document.getElementById("fj1").innerHTML=kinds_fore[coming_for[hours][l-1]]
+                    console.log("B")
+                    document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l-1]);
+                    document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l-1]]
+                    if(Math.round(second/10)%2==0){
+                        document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l-1]]
+                    }else{
+                        document.getElementById("k1").innerHTML=kinds_e[coming_kind[hours][l-1]]
+                        document.getElementById("fj1").innerHTML=kinds_fore[coming_for[hours][l-1]]
+                    }
+                    ///document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l-1]]
+                    ///document.getElementById("fe1").innerHTML=kinds_fore[coming_for[hours][l-1]]
+                    if(coming_second[hours][l-1]<10){
+                        document.getElementById("t1").innerHTML=(hours)+":0"+(coming_second[hours][l-1]);
+                    }
+                    document.getElementById("t2").innerHTML=(hours+1)+":"+(coming_second[hours+1][0]);
+                    document.getElementById("k2").innerHTML=kinds[coming_kind[hours+1][0]]
+                    if(Math.round(second/10)%2==0){
+                        document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours+1][0]]
+                    }else{
+                        document.getElementById("k2").innerHTML=kinds_e[coming_kind[hours+1][0]]
+                        document.getElementById("fj2").innerHTML=kinds_fore[coming_for[hours+1][0]]
+                    }
+                    //document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours+1][0]]
+                    //document.getElementById("fe2").innerHTML=kinds_fore[coming_for[hours+1][0]]
+                    if(coming_second[hours+1][0]<10){
+                        document.getElementById("t2").innerHTML=(hours+1)+":0"+(coming_second[hours+1][0]);
+                    }
+                    document.getElementById("t3").innerHTML=(hours+1)+":"+(coming_second[hours+1][1]);
+                    document.getElementById("k3").innerHTML=kinds[coming_kind[hours+1][1]]
+                    if(Math.round(second/10)%2==0){
+                        document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][1]]
+                    }else{
+                        document.getElementById("k3").innerHTML=kinds_e[coming_kind[hours+1][1]]
+                        document.getElementById("fj3").innerHTML=kinds_fore[coming_for[hours+1][1]]
+                    }
+                    //document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][1]]
+                    //document.getElementById("fe3").innerHTML=kinds_fore[coming_for[hours+1][1]]
+                    if(coming_second[hours+1][1]<10){
+                        document.getElementById("t3").innerHTML=(hours+1)+":0"+(coming_second[hours+1][1]);
+                    }
                 }
-                ///document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l-1]]
-                ///document.getElementById("fe1").innerHTML=kinds_fore[coming_for[hours][l-1]]
+            }else if(l+1 == coming_second[hours].length){
+                console.log("I")
+                document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l]);
+                document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l]]
+                console.log("aaa"+Math.round(minutes/10))
+                if(Math.round(second/10)%2==0){
+                    document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
+                }else{
+                    document.getElementById("k1").innerHTML=kinds_e[coming_kind[hours][l]]
+                    document.getElementById("fj1").innerHTML=kinds_fore[coming_for[hours][l]]
+                }
+                ///document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
+                ///document.getElementById("fe1").innerHTML=kinds_fore[coming_for[hours][l]]
                 if(coming_second[hours][l]<10){
-                    document.getElementById("t1").innerHTML=(hours)+":0"+(coming_second[hours][l-1]);
+                    document.getElementById("t1").innerHTML=(hours)+":0"+(coming_second[hours][l]);
                 }
-                document.getElementById("t2").innerHTML=(hours+1)+":"+(coming_second[hours+1][0]);
+                document.getElementById("t2").innerHTML=(hours)+":"+(coming_second[hours+1][0]);
                 document.getElementById("k2").innerHTML=kinds[coming_kind[hours+1][0]]
-                document.getElementById("r2").innerHTML=kinds_ryo[coming_kind[hours+1][0]]
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours+1][0]]
                 }else{
                     document.getElementById("k2").innerHTML=kinds_e[coming_kind[hours+1][0]]
                     document.getElementById("fj2").innerHTML=kinds_fore[coming_for[hours+1][0]]
                 }
-                //document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours+1][0]]
-                //document.getElementById("fe2").innerHTML=kinds_fore[coming_for[hours+1][0]]
+                //document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours][l+1]]
+                //document.getElementById("fe2").innerHTML=kinds_fore[coming_for[hours][l+1]]
                 if(coming_second[hours+1][0]<10){
                     document.getElementById("t2").innerHTML=(hours+1)+":0"+(coming_second[hours+1][0]);
                 }
                 document.getElementById("t3").innerHTML=(hours+1)+":"+(coming_second[hours+1][1]);
                 document.getElementById("k3").innerHTML=kinds[coming_kind[hours+1][1]]
-                document.getElementById("r3").innerHTML=kinds_ryo[coming_kind[hours+1][1]]
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][1]]
                 }else{
                     document.getElementById("k3").innerHTML=kinds_e[coming_kind[hours+1][1]]
                     document.getElementById("fj3").innerHTML=kinds_fore[coming_for[hours+1][1]]
                 }
-                //document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][1]]
-                //document.getElementById("fe3").innerHTML=kinds_fore[coming_for[hours+1][1]]
+                //document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][0]]
+                //document.getElementById("fe3").innerHTML=kinds_fore[coming_for[hours+1][0]]
                 if(coming_second[hours+1][1]<10){
                     document.getElementById("t3").innerHTML=(hours+1)+":0"+(coming_second[hours+1][1]);
                 }
@@ -181,7 +265,6 @@ let execIntervalFunc = function() {
                 console.log("C")
                 document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l]);
                 document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l]]
-                document.getElementById("r1").innerHTML=kinds_ryo[coming_kind[hours][l]]
                 console.log("aaa"+Math.round(minutes/10))
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
@@ -196,7 +279,6 @@ let execIntervalFunc = function() {
                 }
                 document.getElementById("t2").innerHTML=(hours)+":"+(coming_second[hours][l+1]);
                 document.getElementById("k2").innerHTML=kinds[coming_kind[hours][l+1]]
-                document.getElementById("r2").innerHTML=kinds_ryo[coming_kind[hours][l+1]]
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours][l+1]]
                 }else{
@@ -210,7 +292,6 @@ let execIntervalFunc = function() {
                 }
                 document.getElementById("t3").innerHTML=(hours+1)+":"+(coming_second[hours+1][0]);
                 document.getElementById("k3").innerHTML=kinds[coming_kind[hours+1][0]]
-                document.getElementById("r3").innerHTML=kinds_ryo[coming_kind[hours+1][0]]
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours+1][0]]
                 }else{
@@ -226,7 +307,6 @@ let execIntervalFunc = function() {
                 console.log("D")
                 document.getElementById("t1").innerHTML=(hours)+":"+(coming_second[hours][l]);
                 document.getElementById("k1").innerHTML=kinds[coming_kind[hours][l]]
-                document.getElementById("r1").innerHTML=kinds_ryo[coming_kind[hours][l]]
                 console.log("aaa"+Math.round(minutes/10))
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj1").innerHTML=kinds_for[coming_for[hours][l]]
@@ -241,7 +321,6 @@ let execIntervalFunc = function() {
                 }
                 document.getElementById("t2").innerHTML=(hours)+":"+(coming_second[hours][l+1]);
                 document.getElementById("k2").innerHTML=kinds[coming_kind[hours][l+1]]
-                document.getElementById("r2").innerHTML=kinds_ryo[coming_kind[hours][l+1]]
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj2").innerHTML=kinds_for[coming_for[hours][l+1]]
                 }else{
@@ -255,7 +334,6 @@ let execIntervalFunc = function() {
                 }
                 document.getElementById("t3").innerHTML=(hours)+":"+(coming_second[hours][l+2]);
                 document.getElementById("k3").innerHTML=kinds[coming_kind[hours][l+2]]
-                document.getElementById("r3").innerHTML=kinds_ryo[coming_kind[hours][l+2]]
                 if(Math.round(second/10)%2==0){
                     document.getElementById("fj3").innerHTML=kinds_for[coming_for[hours][l+2]]
                 }else{

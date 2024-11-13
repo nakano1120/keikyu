@@ -6,8 +6,9 @@ body {
 }
 #header{
     background-color:#c9c9c9;
-    font-size:2vw;
-    color:#0032bb;
+    font-size:4vw;
+    color:#fefefe;
+    background-color:#010101;
 }
 table{
     border-spacing:0;
@@ -59,19 +60,28 @@ td.for_j{
 }
 .local{
     background-color:#222222;
-    padding:1.5vw 0;
+    padding:1.5vh 0;
+    margin:0;
 }
 .ex{
     background-color:#0099ff;
-    padding:1.5vw 0;
+    padding:1.5vh 0;
+    margin:0;
 }
 .lex{
     background-color:#ff1111;
-    padding:1.5vw 0;
+    padding:1.5vh 0;
+    margin:0;
 }
 .rle{
     background-color:#00dd22;
-    padding:1.5vw 0;
+    padding:1.5vh 0;
+    margin:0;
+}
+.eng{
+    font-size:2.5vw;
+    padding:5vh 0;
+
 }
 .ads{
     color:orange;
